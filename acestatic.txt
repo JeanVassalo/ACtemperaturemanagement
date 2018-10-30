@@ -1,84 +1,102 @@
-class person{
-constructor(name,temperature_preference,turnon_when){
-			this.name=name;
-      this.temperature_preference=temperature_preference;
-			this.turnon_when=turnon_when;
-		}
+class person {
+  constructor(name, temperature_preference, turnon_when) {
+    this.name = name;
+    this.temperature_preference = temperature_preference;
+    this.turnon_when = turnon_when;
+  }
 }
-class room{
-constructor(room_number,room_temperature,people_in,ac_temperature,on_off){
-			this.room_number=121;
-			this.room_temperature=parseInt(prompt("Insira a temperatura do ambiente"));
-      this.people_in=[];
-      this.people_in_preference=[];
-      this.people_in_turnon=[];
-      this.ac_temperature=ac_temperature;
-			this.on_off=on_off;
-	}
-}
-class ac{
-constructor(ac_temperature,on_off){
-
-	}
+class room {
+  constructor(room_number, room_temperature, people_in, ac_temperature, on_off) {
+    this.room_number = 121;
+    this.room_temperature = parseInt(prompt("Insira a temperatura do ambiente"));
+    this.people_in = [];
+    this.people_in_preference = [];
+    this.people_in_turnon = [];
+    this.ac_temperature = ac_temperature;
+    this.on_off = on_off;
+  }
 }
 
-var sala121=new room();
-var jean=new person('Jean',20,25); sala121.people_in[0]=jean.name; sala121.people_in_preference[0]=jean.temperature_preference;
-sala121.people_in_turnon[0]=jean.turnon_when;
-var ralf=new person('Ralf',24,28); sala121.people_in[1]=ralf.name;sala121.people_in_preference[1]=ralf.temperature_preference;
-sala121.people_in_turnon[1]=ralf.turnon_when;
-var mateus=new person('Mateus',26,26); sala121.people_in[2]=mateus.name; sala121.people_in_preference[2]=mateus.temperature_preference;
-sala121.people_in_turnon[2]=mateus.turnon_when;
-var annabell=new person('Annabell',24,26); sala121.people_in[3]=annabell.name; sala121.people_in_preference[3]=annabell.temperature_preference;
-sala121.people_in_turnon[3]=annabell.turnon_when;
+var sala121 = new room();
 
-var options=1;
+var options = 1;
 
-do{
-var options=prompt("Para adicionar aluno, digite 1, para verificar quem está na sala digite 2, para ver se o ac ligará, digite 3, para ver a temperatura do ac, digite 4.")
-if (options==1){
-var pessoa1=new person(prompt("digite seu nome"),parseInt(prompt("digite a temperatura do AC que te agrada")),parseInt(prompt("digite a temperatura que deseja que o AC ligue")));
-sala121.people_in[4]=pessoa1.name; 
-sala121.people_in_preference[4]=pessoa1.temperature_preference;
-sala121.people_in_turnon[4]=pessoa1.turnon_when;
-//sala121.people_in[5]=pessoa1.name;
+var i = 0; //VAR PARA ARRAY
 
-}else if (options==2){
-document.write(sala121.people_in+"<br/>");
+do {
+  var options = prompt("Para adicionar aluno, digite 1, para verificar quem está na sala digite 2, para ver se o ac ligará, digite 3, para ver a temperatura do ac, digite 4.")
+  if (options == 1) {
+    var pessoa1 = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue")));
+    sala121.people_in[i] = pessoa1.name;
+    sala121.people_in_preference[i] = pessoa1.temperature_preference;
+    sala121.people_in_turnon[i] = pessoa1.turnon_when;
+    i=i+1;
 
-}else if (options==3){
-//VERIFICA SE LIGA
-var cont=0;
-var aux=0;
-while (sala121.people_in_turnon[cont]!=null){
-aux=(sala121.people_in_turnon[cont] + aux);
-cont++;
-}
-if ((aux/cont)<sala121.room_temperature){
-document.write("A temperatura está acima de "+aux/cont+"ºC, por isso o AC será ligado. <br/>");
-sala121.on_off="ligado";
-}else{document.write("A temperatura está abaixo de "+aux/cont+"ºC, por isso o AC não será ligado. <br/>");
-sala121.on_off="desligado";
-}
+  } else if (options == 2) {
+    document.write(sala121.people_in + "<br/>");
+
+  } else if (options == 3) {
+    //VERIFICA SE LIGA
+    var cont = 0;
+    var aux = 0;
+    while (sala121.people_in_turnon[cont] != null) {
+      aux = (sala121.people_in_turnon[cont] + aux);
+      cont++;
+    }
+    if ((aux / cont) < sala121.room_temperature) {
+      document.write("A temperatura está acima de " + aux / cont + "ºC, por isso o AC será ligado. <br/>");
+      sala121.on_off = "ligado";
+    } else {
+      document.write("A temperatura está abaixo de " + aux / cont + "ºC, por isso o AC não será ligado. <br/>");
+      sala121.on_off = "desligado";
+    }
 
 
-}else if (options==4){
-//CONFERE A TEMP
-if (sala121.on_off=="ligado"){
-var cont=0;
-var aux=0;
-while (sala121.people_in_preference[cont]!=null){
-aux=(sala121.people_in_preference[cont] + aux);
-cont++;
-}
-sala121.ac_temperature=(aux/cont);
-document.write("O AC está ligado na temperatura de "+sala121.ac_temperature+"ºC <br/>");
-}else{document.write("O AC está desligado <br/>");}
+  } else if (options == 4) {
+    //CONFERE A TEMP
+    if (sala121.on_off == "ligado") {
+      var cont = 0;
+      var aux = 0;
+      while (sala121.people_in_preference[cont] != null) {
+        aux = (sala121.people_in_preference[cont] + aux);
+        cont++;
+      }
+      sala121.ac_temperature = (aux / cont);
+      document.write("O AC está ligado na temperatura de " + sala121.ac_temperature + "ºC <br/>");
+    } else {
+      document.write("O AC está desligado <br/>");
+    }
 
-}else if (options==5){
-//var removed = sala121.people_in.remove(1);
-document.write(sala121.people_in+"<br/>");
-}
-}while(options!=0);
-//document.write(sala121.people_in);
-/*var */
+  } else if (options == 5) {
+
+    var entrar = prompt("Digite o nome da pessoa que entrará na sala")
+    if (entrar == 'Jean') {
+      var jean = new person('Jean', 20, 25);
+      sala121.people_in[i] = jean.name;
+      sala121.people_in_preference[i] = jean.temperature_preference;
+      sala121.people_in_turnon[i] = jean.turnon_when;
+      i = i + 1;
+    } else if (entrar == 'Ralf') {
+      var ralf = new person('Ralf', 24, 28);
+      sala121.people_in[i] = ralf.name;
+      sala121.people_in_preference[i] = ralf.temperature_preference;
+      sala121.people_in_turnon[i] = ralf.turnon_when;
+      i = i + 1;
+    } else if (entrar == 'Mateus') {
+      var mateus = new person('Mateus', 26, 26);
+      sala121.people_in[i] = mateus.name;
+      sala121.people_in_preference[i] = mateus.temperature_preference;
+      sala121.people_in_turnon[i] = mateus.turnon_when;
+      i = i + 1;
+    } else if (entrar == 'Annabell') {
+      var annabell = new person('Annabell', 24, 26);
+      sala121.people_in[i] = annabell.name;
+      sala121.people_in_preference[i] = annabell.temperature_preference;
+      sala121.people_in_turnon[i] = annabell.turnon_when;
+      i = i + 1;
+    } else {
+      document.write("Esta pessoa não está cadastrada")
+    }
+
+  }
+} while (options != 0);
