@@ -24,7 +24,7 @@ var options = 1;
 var i = 0; //VAR PARA ARRAY
 
 do {
-  var options = prompt("Para adicionar aluno, digite 1, para verificar quem está na sala digite 2, para ver se o ac ligará, digite 3, para ver a temperatura do ac, digite 4.")
+  var options = prompt("Para adicionar aluno, digite 1, para verificar quem está na sala digite 2, para ver se o ac ligará, digite 3, para ver a temperatura do ac, digite 4 e para entrar nala, digite 5.")
   if (options == 1) {
     var pessoa1 = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue")));
     sala121.people_in[i] = pessoa1.name;
@@ -100,3 +100,4 @@ do {
 
   }
 } while (options != 0);
+
