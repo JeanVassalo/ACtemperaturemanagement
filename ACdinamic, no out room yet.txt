@@ -22,15 +22,17 @@ var sala121 = new room();
 var options = 1;
 
 var i = 0; //VAR PARA ARRAY
-
+var a=0;
+var pessoa1=[];
 do {
   var options = prompt("Para adicionar aluno, digite 1, para verificar quem está na sala digite 2, para ver se o ac ligará, digite 3, para ver a temperatura do ac, digite 4 e para entrar nala, digite 5.")
   if (options == 1) {
-    var pessoa1 = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue")));
-    sala121.people_in[i] = pessoa1.name;
-    sala121.people_in_preference[i] = pessoa1.temperature_preference;
-    sala121.people_in_turnon[i] = pessoa1.turnon_when;
+     pessoa1[a] = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue")));
+    sala121.people_in[i] = pessoa1[a].name;
+    sala121.people_in_preference[i] = pessoa1[a].temperature_preference;
+    sala121.people_in_turnon[i] = pessoa1[a].turnon_when;
     i=i+1;
+    a=a+1;
 
   } else if (options == 2) {
     document.write(sala121.people_in + "<br/>");
@@ -95,9 +97,8 @@ do {
       sala121.people_in_turnon[i] = annabell.turnon_when;
       i = i + 1;
     } else {
-      document.write("Esta pessoa não está cadastrada")
+      document.write("Esta pessoa não está cadastrada"+"<br/>")
     }
 
   }
 } while (options != 0);
-
