@@ -7,56 +7,55 @@ class person { //CRIANDO A CLASSE PEESOA
 }
 class room { //CRIANDO A CLASSE SALA
   constructor(room_number, room_temperature, people_in, ac_temperature, on_off) {
-  //CONSTUTOR DA CLASSE, CADA ATRIBUTO DA CLASSE TEM SEU OBJETIVO
+    //CONSTUTOR DA CLASSE, CADA ATRIBUTO DA CLASSE TEM SEU OBJETIVO
     this.room_number = 121; //NESSE ATRIBUTO FOI INSTANCIADO ESTATICAMENTE POIS SÓ EXISTIRÁ UMA SALA NO PROBLEMA
-    this.room_temperature = parseInt(prompt("Insira a temperatura do ambiente"));//A TEMPERATURA DA SALA ESTA SENDO INSTANCIADA MAS NESTE PONTO, PODERIA SER RECEBIDA A TEMPERATURA DE UM SENSOR
-    this.people_in = [];//UM VETOR QUE GUARDA AS PESSOAS QUE ESTAO NA SALA
-    this.people_in_preference = [];//UM VETOR QUE GUARDA A PREFERENCIA DE CADA PESSOA QUE ESTA NA SALA
-    this.people_in_turnon = [];//UM VETOR QUE GUARDA QUANDO AS PESSOAS QUEREM QUE LIGUE O AC
-    this.ac_temperature = ac_temperature;//UMA VARIAVEL PARA SABER A TEMPERATURA EM QUE O AC SERA LIGADO
-    this.on_off = on_off;//UMA VARIAVEL PARA SABER SE O AC ESTA LIGADO OU NAO
+    this.room_temperature = parseInt(prompt("Insira a temperatura do ambiente")); //A TEMPERATURA DA SALA ESTA SENDO INSTANCIADA MAS NESTE PONTO, PODERIA SER RECEBIDA A TEMPERATURA DE UM SENSOR
+    this.people_in = []; //UM VETOR QUE GUARDA AS PESSOAS QUE ESTAO NA SALA
+    this.people_in_preference = []; //UM VETOR QUE GUARDA A PREFERENCIA DE CADA PESSOA QUE ESTA NA SALA
+    this.people_in_turnon = []; //UM VETOR QUE GUARDA QUANDO AS PESSOAS QUEREM QUE LIGUE O AC
+    this.ac_temperature = ac_temperature; //UMA VARIAVEL PARA SABER A TEMPERATURA EM QUE O AC SERA LIGADO
+    this.on_off = on_off; //UMA VARIAVEL PARA SABER SE O AC ESTA LIGADO OU NAO
   }
 }
 
-var sala121 = new room();// INSTANCIANDO A SALA
+var sala121 = new room(); // INSTANCIANDO A SALA
 
-var options = 1;// VARIAVEL PARA OPERAR O MENU
+var options = 1; // VARIAVEL PARA OPERAR O MENU
 
 var i = 0; //VAR PARA ARRAY
 
-do {//INICIANDO O MENU
-  var options = prompt("1- Para adicionar aluno; 2- Verificar quem está na sala; 3- Status do AC; 4- Temperatura do AC; 5- Entrar na sala; 6-Sair da sala; 0-Finalizar")//O USUARIO DIGITA A OPÇÃO DESEJADA
-  if (options == 1) {//ESTA OPÇÃO ADICIONA UM ALUNO
-    var pessoa1 = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue")));//INSTANCIANDO A NOVA PESSOA
-    sala121.people_in[i] = pessoa1.name;//INSERINDO A NOVA PESSOA NA SALA
-    sala121.people_in_preference[i] = pessoa1.temperature_preference;//GUARDANDO AS PREFERENCIAS DA PESSOA
-    sala121.people_in_turnon[i] = pessoa1.turnon_when;//GUARDANDO AS PREFERENCIAS DA PESSOA
-    i=i+1;//INCREMENTAR O CONTADOR PARA SER POSSIVEL ADICIONAR NOVAS PESSOAS
+do { //INICIANDO O MENU
+  var options = prompt("1- Para adicionar aluno; 2- Verificar quem está na sala; 3- Status do AC; 4- Temperatura do AC; 5- Entrar na sala; 6-Sair da sala; 0-Finalizar") //O USUARIO DIGITA A OPÇÃO DESEJADA
+  if (options == 1) { //ESTA OPÇÃO ADICIONA UM ALUNO
+    var pessoa1 = new person(prompt("digite seu nome"), parseInt(prompt("digite a temperatura do AC que te agrada")), parseInt(prompt("digite a temperatura que deseja que o AC ligue"))); //INSTANCIANDO A NOVA PESSOA
+    sala121.people_in[i] = pessoa1.name; //INSERINDO A NOVA PESSOA NA SALA
+    sala121.people_in_preference[i] = pessoa1.temperature_preference; //GUARDANDO AS PREFERENCIAS DA PESSOA
+    sala121.people_in_turnon[i] = pessoa1.turnon_when; //GUARDANDO AS PREFERENCIAS DA PESSOA
+    i = i + 1; //INCREMENTAR O CONTADOR PARA SER POSSIVEL ADICIONAR NOVAS PESSOAS
 
-  } else if (options == 2) {//OPÇÃO PARA VER QUEM ESTA NA SALA
-  if (sala121.people_in[0] != null)//SE HOUVER ALGUEM NA SALA, SERA MOSTRADO
-    document.write(sala121.people_in + "<br/>");
+  } else if (options == 2) { //OPÇÃO PARA VER QUEM ESTA NA SALA
+    if (sala121.people_in[0] != null) //SE HOUVER ALGUEM NA SALA, SERA MOSTRADO
+      document.write(sala121.people_in + "<br/>");
     else //SE NAO HOUVER NINGUEM NA SALA, ESSA MENSAGEM APARECERÁ
-document.write("A sala está vazia <br/>")
+      document.write("A sala está vazia <br/>")
 
-  }else if (options == 6) {//OPÇÃO PARA REMOVER PESSOAS DA SALA
-   var cont = 0;
-   var sair=prompt("Digite quem sairá da sala.")//USUARIO DIGITA QUEM SAIRA DA SALA
-   while (sala121.people_in[cont]!=sair){//ENQUANTO NAO ENCONTRAR A PESSOA Q VAI SAIR, INCREMENTA O CONTADOR
-   cont++;
-   if(sala121.people_in[cont]==null){// SE NÃO ENCONTRAR A PESSOA PROCURADA, APARECE UMA MENSAGEM E DA BREAK NO WHILE
-   document.write('Esta pessoa não está na sala'+ "<br/>");
-   break;
-   }
-   }
-   if (sala121.people_in[cont]==sair){//SE ENCONTRAR A PESSOA, REMOVE ELA DA SALA E SEUS ATRIBUTOS TAMBEM
-   sala121.people_in.splice(cont,1);
-   sala121.people_in_turnon.splice(cont,1);
-   sala121.people_in_preference.splice(cont,1);
-   }
-   
-  } else if (options == 3) {
-    //VERIFICA SE LIGA
+  } else if (options == 6) { //OPÇÃO PARA REMOVER PESSOAS DA SALA
+    var cont = 0;
+    var sair = prompt("Digite quem sairá da sala.") //USUARIO DIGITA QUEM SAIRA DA SALA
+    while (sala121.people_in[cont] != sair) { //ENQUANTO NAO ENCONTRAR A PESSOA Q VAI SAIR, INCREMENTA O CONTADOR
+      cont++;
+      if (sala121.people_in[cont] == null) { // SE NÃO ENCONTRAR A PESSOA PROCURADA, APARECE UMA MENSAGEM E DA BREAK NO WHILE
+        document.write('Esta pessoa não está na sala' + "<br/>");
+        break;
+      }
+    }
+    if (sala121.people_in[cont] == sair) { //SE ENCONTRAR A PESSOA, REMOVE ELA DA SALA E SEUS ATRIBUTOS TAMBEM
+      sala121.people_in.splice(cont, 1); //A FUNÇÃO SPLICE RETIRA A PESSOA DO VETOR, DEVEMOS INSERIR A POSIÇÃO DELA E A UNIDADE
+      sala121.people_in_turnon.splice(cont, 1);
+      sala121.people_in_preference.splice(cont, 1);
+    }
+
+  } else if (options == 3) { //VERIFICA SE LIGA O AC
     var cont = 0;
     var aux = 0;
     while (sala121.people_in_turnon[cont] != null) {
@@ -72,22 +71,22 @@ document.write("A sala está vazia <br/>")
     }
 
 
-  } else if (options == 4) {
-    //CONFERE A TEMP
+  } else if (options == 4) { //CONFERE A TEMPERATURA DO AC
     if (sala121.on_off == "ligado") {
       var cont = 0;
       var aux = 0;
-      while (sala121.people_in_preference[cont] != null) {
+      while (sala121.people_in_preference[cont] != null) { //SOMA TODAS AS TEMPERATURAS DESEJADAS
+
         aux = (sala121.people_in_preference[cont] + aux);
-        cont++;
+        cont++; //CONTADOR PARA SABER QUANTAS PESSOAS ESTAO NA SALA
       }
-      sala121.ac_temperature = (aux / cont);
+      sala121.ac_temperature = (aux / cont); //DIVIDE PELA QUANTIDADE DE PESSOAS NA SALA
       document.write("O AC está ligado na temperatura de " + sala121.ac_temperature + "ºC <br/>");
     } else {
       document.write("O AC está desligado <br/>");
     }
 
-  } else if (options == 5) {
+  } else if (options == 5) { //INSERE PESSOAS NA SALA QUE JA ESTAO NO 'BANCO DE DADOS'
 
     var entrar = prompt("Digite o nome da pessoa que entrará na sala")
     if (entrar == 'Jean') {
@@ -115,7 +114,7 @@ document.write("A sala está vazia <br/>")
       sala121.people_in_turnon[i] = annabell.turnon_when;
       i = i + 1;
     } else {
-      document.write("Esta pessoa não está cadastrada")
+      document.write("Esta pessoa não está cadastrada")//CASO TENTEM INSERIR ALGUEM QUE NAO ESTA NO BD
     }
 
   }
